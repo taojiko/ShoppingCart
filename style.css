@@ -1,0 +1,57 @@
+.img{
+		  height: 450px;
+/* 		  width: 100%;  */
+  background-size: cover;
+  background-position: center center;
+		}
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.4);
+  margin-bottom: 2rem;
+}
+.btn-cart{
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.btn-cart >i{
+  font-size: 1.5rem;
+}
+.btn-cart .badge{
+  position: absolute;
+  top: 5px;
+  right: 3px;
+}
+.jumbotron-bg{
+  background: url(https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
+  background-position: center center;
+  background-size: cover;
+  min-height:400px;
+}
+.bg-lighter{
+  background: rgba(255,255,255,.65);
+}
+.box-shadow{
+  box-shadow:0px 3px 5px Rgba(0,0,0,.16);
+}
+.box-shadow:hover{
+  box-shadow:0px 4px 10px Rgba(0,0,0,.24);
+  transition: box-shadow .3s;
+}
+.accordion>.card:first-of-type{
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius:0.25rem;
+}
+.shoppingList{
+  border-top:0;
+}
+.bg-cover{
+  background-size: cover;
+  background-position: center center;
+  height:140px;
+}
+.shop-cart{
+  position: fixed;
+  right: 1rem;
+  bottom:1rem;
+  z-index: 10;
+}

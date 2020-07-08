@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>shoppingCart模擬購物網站(vue+vuex+router+b4)</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="https://router.vuejs.org/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:title" content="shoppingCart模擬購物網站(vue+vuex+router+b4)">
+  <meta property="og:description" content="shoppingCart模擬購物網站(vue+vuex+router+b4)">
+  <meta property="og:image" content="https://i.imgur.com/H060B8k.jpg">
+  <meta property=”og:type” content=”website”/>
+  <meta property=”og:site_name” content=”JIKO-ShopCart”/>
+
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='https://unpkg.com/swiper/swiper-bundle.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vue-loading-overlay@3/dist/vue-loading.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="app">
+  <loading :active.sync="visible"></loading>
+   <div class="shop-cart">
+        <button class="btn btn-sm btn-cart" data-toggle="dropdown" aria-flip="false">
+        <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+        <span class="badge badge-pill badge-danger">2</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-down" style="min-width:310px">
+        <form class="px-4 py-3">
+          <h6>已加入商品</h6>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="align-middle text-center">
+                  <a href="#removeModel" class="text-muted" data-toggle="modal" data-target="#deleteModal"  data-title="牛仔褲 1件">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </a>
+                </td>
+                <td class="align-middle">牛仔褲</td>
+                <td class="align-middle">1件</td>
+                <td class="align-middle text-right">$990</td>
+              </tr>
+              <tr>
+                <td class="align-middle text-center">
+                  <a href="#removeModel" class="text-muted" data-toggle="modal" data-target="#deleteModal" data-title="睡衣 1件">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </a>
+                </td>
+                <td class="align-middle">睡衣</td>
+                <td class="align-middle">1件</td>
+                <td class="align-middle text-right">$490</td>
+              </tr>
+            </tbody>
+          </table>
+          <router-link to="/buy" class="text-decoration-none" ><a href="#" class="btn btn-primary text-white btn-block" data-toggle="modal" data-target="#exampleModal" @click="open">
+            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+            結帳去
+          </a></router-link>
+       
+        </form>
+      </div>
+      </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <router-link to="/home"><a class="navbar-brand " href="#" @click="open">
+      <i class="fa fa-money fa-lg " aria-hidden="true"></i>
+      買三千送兩千
+    </a></router-link>
+    
+    <!-- 購物車內數量 -->
+    <div class="dropdown ml-auto">
+  </nav>
+  <!-- banner -->
+  <header>
+  <!--   <div class="container"> -->
+      <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" data-hash="slide1"><div class="img" style="background-image:url(https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80); "></div>
+          <div class="carousel-caption d-none d-md-block px-2">
+      <h5>一個人，孤獨享受</h5>
+      <p>誰說金錢買不到快樂？買對東西就可以！</p>
+    </div>
+        </div>
+        <div class="swiper-slide" data-hash="slide2"><div class="img" style="background-image:url(https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80); "></div>
+          <div class="carousel-caption d-none d-md-block px-2">
+      <h5>一個人，孤獨享受</h5>
+      <p>誰說金錢買不到快樂？買對東西就可以！</p>
+    </div>
+        </div>
+        <div class="swiper-slide" data-hash="slide3"><div class="img" style="background-image:url(https://images.unsplash.com/3/www.madebyvadim.com.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=761&q=80); "></div><div class="carousel-caption d-none d-md-block px-2">
+      <h5>一個人，孤獨享受</h5>
+      <p>誰說金錢買不到快樂？買對東西就可以！</p>
+    </div></div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  <!--   </div> -->  
+  </header> 
+    <router-view></router-view>
+</div> 
+<footer class="bg-warning text-muted py-5 mt-3 ">
+  <ul class="list-inline text-center">
+    <li class="list-inline-item"><a href="#" class="text-info">Instagrame</a></li>
+    <li class="list-inline-item"><a href="#" class="text-info">Facebook</a></li>
+    <li class="list-inline-item"><a href="#" class="text-info">About</a></li>
+    <p></p>
+    <li class="list-inline-item ">© Copright 2020 買到賺到</li>
+  </ul>
+</footer>
+ 
+<!-- 刪除商品Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="deleteModalLabel">確認刪除</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        是否確認刪除商品
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">否</button>
+        <button type="button" class="btn btn-outline-danger px-5">是</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+<!-- vue元件首頁 -->
+<template id="home">
+  
+<!-- 側欄切換選單 -->
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <div class="list-group sticky-top" style="top:10px">
+        <a href="#kingpie" class="list-group-item list-group-item-action list-group-item-warning active" data-toggle="list">
+          <i class="fa fa-credit-card" aria-hidden="true"></i>
+          金牌專賣店
+        </a>
+        <a href="#gift" class="list-group-item list-group-item-action list-group-item-warning" data-toggle="list" >
+          <i class="fa fa-gift" aria-hidden="true"></i>
+          禮品區
+        </a>
+        <a href="#movie" class="list-group-item list-group-item-action list-group-item-warning" data-toggle="list">
+          <i class="fa fa-film" aria-hidden="true"></i>
+          影音商品
+        </a>
+        <a href="#pets" class="list-group-item list-group-item-action list-group-item-warning disabled text-nowrap"  tabindex="-1" aria-disabled="true" data-toggle="list">
+          <i class="fa fa-paw" aria-hidden="true"></i>
+          毛孩特區
+          <span class="badge badge-danger badge-pill ">補</span>
+        </a>
+        <a href="#house" class="list-group-item list-group-item-action list-group-item-warning" data-toggle="list">
+          <i class="fa fa-home" aria-hidden="true"></i>
+          居家環境
+        </a>
+      </div>
+    </div>
+    <!--     產品區塊 -->
+    <div class="col-md-9">
+      
+      <div class="tab-content">
+        <div class="tab-pane active" id="kingpie" role="tabpanel">
+          <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1509003124559-eb6678fe452b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">特殊剪裁潮T</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This content is a little bit longer.</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white" @click.prevent="open">
+                  <router-link to="/about" class="text-decoration-none"> <a href="#" class="btn btn-success btn-block btn-sm " >購買</a></router-link>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1484328256245-34b71758c30b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">藕粉麂皮短裙</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                  <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1512633611077-51bf3c872a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">浪漫雪紡度假洋裝</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium repellat recusandae, ipsa molestias soluta deserunt saepe porro. Voluptatibus, ipsa? Minima optio sit distinctio quos omnis provident nulla, id ipsa culpa!</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                  <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1496303546775-e565e0b4c88a?ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">個性搖滾T</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. Odit consequatur ducimus laboriosam incidunt in!</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                  <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1494578379344-d6c710782a3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">夏日清爽連衣裙</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus aperiam explicabo repellat, harum nostrum veritatis dolorum corporis est ducimus cumque magnam libero, dicta qui. </p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                  <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">夏日清爽連衣裙</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. additional content.</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                  <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="gift" role="tabpanel">
+          <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1512163143273-bde0e3cc7407?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">星戒</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1511434139893-de3e59cdeee5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">薑餅禮盒</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.  This content is a little bit longer</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">極簡風石英錶</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. additional content.</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="movie" role="tabpanel">
+          <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1519638831568-d9897f54ed69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">懷舊canon相機</h5>
+                  <p class="card-text">This content is a little bit longer. additional content. This content is a little bit longer</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">低調皮革耳機</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. additional content. This content is a little bit longer</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">包覆式低重音耳機</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. additional content. This content is a little bit longer</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<!--         毛小孩特區 -->
+<!--         <div class="tab-pane" id="pets" role="tabpanel">
+          <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1511434139893-de3e59cdeee5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. additional content. This content is a little bit longer</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1511434139893-de3e59cdeee5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. additional content. This content is a little bit longer</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1511434139893-de3e59cdeee5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. additional content. This content is a little bit longer</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="tab-pane" id="house" role="tabpanel">
+          <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1542373409-e10e0387170e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">樸素雙人床組</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero ullam officiis ratione illum ipsum consequatur esse sit ad qui, repellat, illo velit cumque accusamus? </p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1531876653494-b5c5dc360a5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">仙人掌抱枕</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card box-shadow border-0 text-center h-100">
+                <img src="https://images.unsplash.com/photo-1461418559055-6f020c5a91e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" class="card-img-top bg-cover" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">簡單便利桌組</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero ullam officiis ratione illum ipsum consequatur esse sit ad qui, repellat, illo velit cumque accusamus? Recusandae ut nulla necessitatibus eius atque!</p>
+                </div>
+                <div class="card-footer border-top-0 bg-white">
+                 <a href="#" class="btn btn-outline-secondary btn-sm d-block disabled">補貨中</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center my-5">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+</div>
+</template>
+  
+<!-- vue元件商品細節 -->
+<template id="about">
+   <div class="container">
+    <!--     麵包屑 -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-transparent mx-0 pl-0">
+        
+        <li class="breadcrumb-item" @click.prevent="open"><a href="#"><router-link to="/home">首頁</router-link></a></li>
+        <li class="breadcrumb-item" @click.prevent="open"><a href="#"><router-link to="/home">金牌專賣店</router-link></a></li>
+        <li class="breadcrumb-item active" aria-current="page">金牌西裝</li>
+      </ol>
+    </nav>
+    <div class="row">
+      <!--       單品價格 -->
+      <div class="col-md-4">
+        <div class="sticky-top" style="top:10px">
+          <h1 class="h2">金牌西裝</h1>
+          <div class="d-flex justify-content-end align-items-end">
+            <span class="text-muted" style="text-decoration:line-through">售價 $9527</span>
+            <div class="h3 ml-auto mb-0 text-danger">
+              <small>特價 NT$</small>
+              <strong>5566</strong>
+            </div>
+          </div>
+          <hr>尺寸：
+          <div class="btn-group btn-group-toggle btn-group-sm" data-toggle="buttons">
+            <label class="btn btn-outline-secondary">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> S
+          </label>
+            <label class="btn btn-outline-secondary disabled">
+            <input type="radio" name="options" id="option2" autocomplete="off" disabled> M
+          </label>
+            <label class="btn btn-outline-secondary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> L
+          </label>
+          </div>
+          <div class="input-group mt-3">
+            <select class="form-control mr-1">
+              <option value="1">1 套</option>
+              <option value="2">2 套</option>
+              <option value="3">3 套</option>
+            </select>
+            <a href="#" class="btn btn-primary disabled">加入購物車</a>
+          </div>
+        </div>
+      </div>
+      <!--       單品主頁 -->
+      <div class="col-md-8 ">
+        <h2>舒適透氣休閒西裝</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi unde eum non explicabo obcaecati totam eveniet nostrum saepe? Accusantium voluptatum iste aliquid consequatur modi perferendis rem sapiente voluptates, excepturi qui.</p>
+        <h3 class="text-center my-4">合身剪裁</h3>
+        <img src="https://images.unsplash.com/photo-1515938736719-95b568dc8dd8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" class="img-fluid mx-auto d-block" alt="Responsive image">
+        <h3 class="text-center my-4">簡單俐落</h3>
+        <img src="https://images.unsplash.com/photo-1542243057-2b5d482cd399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" class="img-fluid mx-auto d-block" alt="Responsive image">
+        <h3 class="text-center my-4">亮眼奪目</h3>
+        <img src="https://images.unsplash.com/photo-1489370603040-dc6c28a1d37a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80" class="img-fluid mx-auto d-block" alt="Responsive image">
+        <div class="bg-light my-3 p-3 text-muted rounded-lg border-secondary">
+          <h3 class="text-center my-3">購物說明</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, at! Totam, exercitationem repellat. Saepe facere amet expedita perferendis voluptatem dicta dignissimos tempora ut atque, rerum doloribus? Magni, blanditiis. Assumenda, distinctio!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+  
+<!-- vue元件結帳 -->
+<template id="buy">
+   <!--商品子頁 -->
+
+ 
+  <!--   結帳流程 -->
+  <div class="container main-contant py-5">
+    <h1 class="text-center text-secondary mb-3">荷包交出來</h2>
+      <div class="form-row text-center">
+        <div class="col-12 col-sm">
+          <div class="alert alert-success rounded-pill" role="alert">
+            1.訂單資料
+          </div>
+        </div>
+        <div class="col-12 col-sm">
+          <div class="alert alert-info rounded-pill" role="alert">
+            2.付款
+          </div>
+        </div>
+        <div class="col-12 col-sm">
+          <div class="alert alert-info rounded-pill" role="alert">
+            3.購買完成
+          </div>
+        </div>
+      </div>
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-8">
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header d-flex" id="headingOne">
+              <button class="btn btn-link text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              顯示購物車細節
+              </button>
+              <strong class="ml-auto h3 align-middle">$1840</strong>
+            </div>
+          </div>
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <table class="table">
+              <tbody>
+                <tr class="shoppingList">
+                  <td class="align-middle text-center" style="width:16px">
+                    <a href="#removeModel" class="text-muted" data-toggle="modal" data-target="#deleteModal"  data-title="Mark西裝 1件">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                  </td>
+                  <td class="align-middle">牛仔褲</td>
+                  <td class="align-middle" style="width:100px">1件</td>
+                  <td class="align-middle text-right" style="width:100px">$990</td>
+                </tr>
+                <tr>
+                  <td class="align-middle text-center">
+                    <a href="#removeModel" class="text-muted" data-toggle="modal" data-target="#deleteModal"  data-title="Jacob西裝 1件">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                  </td>
+                  <td class="align-middle">睡衣</td>
+                  <td class="align-middle">1件</td>
+                  <td class="align-middle text-right">$490</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3" class="text-right">運費</td>
+                  <td class="text-right font-weight-bold">$60</td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="text-right font-weight-bold">合計</td>
+                  <td class="text-right font-weight-bold">$1540</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <h5 class="text-center p-3  my-3 bg-light h4">訂購人資訊</h5>
+        <form action="" class="needs-validation" novalidate>
+          <div class="form-row mt-3">
+            <div class="form-group col-md-6">
+              <label for="name">姓名</label>
+              <input type="text" class="form-control" id="name" placeholder="請填入姓名" required>
+              <div class="invalid-feedback">
+                請填寫姓名
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="請填入Email" required>
+              <div class="invalid-feedback">
+                請填入正確的email
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address">地址</label>
+            <input type="text" class="form-control" id="address" placeholder="請填入地址" required>
+            <div class="invalid-feedback">
+              請填寫完整地址
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group col-md">
+              <label for="country">國家</label>
+              <select class="form-control" id="country">
+                <option selected>台灣</option>
+              </select>
+            </div>
+            <div class="form-group col-md">
+              <label for="city">城市</label>
+              <select class="form-control" id="city">
+                <option selected>台北</option>
+                <option>台中</option>
+                <option>高雄</option>
+              </select>
+            </div>
+            <div class="form-group col-md">
+              <label for="zip">郵遞區號</label>
+              <input type="text" class="form-control" id="zip" required>
+              <div class="invalid-feedback">
+                請填寫郵遞區號
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="check" required>
+              <label class="form-check-label" for="check">
+                確認填寫正確並同意
+              </label>
+              <div class="invalid-feedback">
+                送出前請勾選
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <router-link to="/home"><button type="button" class="btn btn-secondary" @click="open">繼續選購</button></router-link>
+            <button type="button" class="btn btn-primary disabled">確認付款</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
+<!-- partial -->
+  <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+<script src='https://unpkg.com/swiper/swiper-bundle.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+<script src='https://unpkg.com/vue-router/dist/vue-router.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vue-loading-overlay@3'></script>
+<script src='https://unpkg.com/vuex@3.5.1/dist/vuex.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
