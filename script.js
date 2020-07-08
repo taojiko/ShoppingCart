@@ -40,10 +40,10 @@ $(document).ready(function() {
 
 
 // vue.js
-let loading = {methods: {open() {this.$store.dispatch("open",true)},}}
-const home = { template: '#home',...loading }
-const about = { template: '#about',...loading }
-const buy = { template: '#buy',...loading }
+// let loading = {methods: {open() {this.$store.dispatch("open",true)},}}
+const home = { template: '#home',methods: {open() {this.$store.dispatch("open",true)},} }
+const about = { template: '#about',methods: {open() {this.$store.dispatch("open",true)},} }
+const buy = { template: '#buy',methods: {open() {this.$store.dispatch("open",true)},} }
 
 const routes = [
   {path: '/', redirect: 'home'},
